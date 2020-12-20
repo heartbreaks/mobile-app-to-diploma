@@ -1,0 +1,10 @@
+{
+    "port": 5000,
+    "databaseParams": {
+        "host":"localhost",
+        "user":"mysql",
+        "database":"diplom",
+        "password":"mysql"
+    },
+    "jwtSecret": "diploma give me pass"
+}
