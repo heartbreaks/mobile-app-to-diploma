@@ -4,11 +4,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../Models/Users");
 const config = require("../config/default.json");
-const database = require("../databaseSettings");
-const express = require("express");
-const app = express();
 const router = Router();
-const cors = require("cors");
 
 // /register
 router.post("/register", async (req, res) => {
@@ -69,7 +65,6 @@ router.post(
       const user = await User.findOne({ where: { login: login } });
 
       if (!user) {
-        console.log("incorrect", user);
         return res.status(400).json({ message: "User not found" });
       }
 

@@ -8,7 +8,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use("/", require("./Routers/auth.router"));
-
+app.use("/tasks", require("./Routers/tasks.router"));
 const PORT = config.port || 5000;
 
 async function start() {
