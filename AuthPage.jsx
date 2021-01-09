@@ -86,7 +86,6 @@ class Authentication extends React.Component {
                 .then(async res => {
                   if (res) {
                     await this.setState({ userInfo: res.data });
-                    console.log(this.s);
                   }
                 })
                 .catch(err => {

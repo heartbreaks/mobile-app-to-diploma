@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
+import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import { connect } from "react-redux";
 import { getTasks } from "../Redux/actions";
 import Task from "./Task";
@@ -7,7 +8,6 @@ import Task from "./Task";
 class TasksList extends React.Component {
   constructor(props) {
     super(props);
-    // this.showTasks = this.showTasks.bind(this);
   }
 
   componentDidMount() {
@@ -18,21 +18,18 @@ class TasksList extends React.Component {
     setTimeout(onInitScreen, 300000);
   }
 
-  // showTasks() {
-  //   const { tasks } = this.props;
-  //   return tasks.map(task => {
-  //     return <Task key={task.id} id={task.id}/>;
-  //   });
-  // }
-
   render() {
-    const { tasks } = this.props;
+    const { tasks, navigation } = this.props;
     return (
-      <View style={styles.tasksList}>
-        {tasks ? tasks.map(task => {
-          return <Task key={task.id} id={task.id}/>; 
-        }) : <Text>Load</Text>}
-      </View>
+      <ScrollView style={styles.tasksList}>
+        {tasks ? (
+          tasks.map(task => {
+            return <Task key={task.id} navigation={navigation} id={task.id} />;
+          })
+        ) : (
+          <Text>Load</Text>
+        )}
+      </ScrollView>
     );
   }
 }

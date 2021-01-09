@@ -1,18 +1,24 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
-import AppNavigator from "../Navigation/AppNavigator";
 
 export default function AuthComplete(props) {
   return (
-    <View style={styles.Authcompleted}>
-      <Text>Auth completed</Text>
+    <View style={styles.authCompleted}>
+      <View style={styles.cardForTasks}>
+        <Text style={{padding: 15}}>Создать карточку</Text>
+      </View>
+      <Text>Something</Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  Authcompleted: {
+  authCompleted: {
     flex: 1,
     justifyContent: "center",
   },
+  cardForTasks: {
+    backgroundColor: 'red',
+    margin: 5,
+  }
 });

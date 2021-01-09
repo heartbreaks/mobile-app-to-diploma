@@ -3,7 +3,8 @@ import { createBottomTabNavigator } from "react-navigation-tabs";
 import { createStackNavigator } from "react-navigation-stack";
 
 import AuthComplete from "../Screens/AuthComplete";
-import { TasksScreen } from "../Screens/TasksScreen";
+import { TasksScreen} from "../Screens/TasksScreen";
+import {CurrentTask} from "../Screens/CurrentTask";
 
 const _AuthCompleteNavigator = createStackNavigator({
   AuthComplete: {
@@ -15,10 +16,16 @@ const _AuthCompleteNavigator = createStackNavigator({
 });
 
 const _TasksNavigator = createStackNavigator({
-  AuthComplete: {
+  TasksScreen: {
     screen: TasksScreen,
     navigationOptions: {
       title: "Задачи",
+    },
+  },
+  CurrentTask: {
+    screen: CurrentTask,
+    navigationOptions: {
+      title: "Текущая задача",
     },
   },
 });
@@ -36,6 +43,6 @@ const AppNavigator = createBottomTabNavigator({
       title: "Мои Задачи",
     },
   },
-});
+}, {initialRouteName: 'TasksScreen'});
 
 export default createAppContainer(AppNavigator);
