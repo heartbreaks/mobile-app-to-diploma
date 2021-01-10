@@ -86,7 +86,6 @@ class Authentication extends React.Component {
                 .then(async res => {
                   if (res) {
                     await this.setState({ userInfo: res.data });
-                    console.log(this.s);
                   }
                 })
                 .catch(err => {
@@ -96,7 +95,7 @@ class Authentication extends React.Component {
             style={{ marginTop: "20px", width: "5%" }}
             title="Войти"
           />
-          <StatusBar style="auto" />
+          <StatusBar style="black" />
         </View>
       </View>
     );

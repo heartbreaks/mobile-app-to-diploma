@@ -3,6 +3,7 @@ import { View, Text, StyleSheet } from "react-native";
 import { connect } from "react-redux";
 import { Feather } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 function getIndicator(type) {
   switch (type) {
@@ -33,44 +34,51 @@ function getIndicator(type) {
 }
 
 function Task(props) {
-  const { currentTask } = props;
+  const { currentTask, navigation } = props;
 
   return (
-    <View style={styles.task}>
-      <View style={styles.head}>
-        <Text
-          style={
-            (styles.border,
-            {
-              fontSize: 15,
-              fontWeight: "bold",
-              paddingBottom: 3,
-              borderBottomColor: "white",
-              borderBottomWidth: 1.5,
+    <TouchableOpacity
+      onPress={() => {
+        navigation.navigate('CurrentTask', currentTask)
+        console.log(props)
+      }}
+    >
+      <View style={styles.task}>
+        <View style={styles.head}>
+          <Text
+            style={
+              (styles.border,
+              {
+                fontSize: 15,
+                fontWeight: "bold",
+                paddingBottom: 3,
+                borderBottomColor: "white",
+                borderBottomWidth: 1.5,
+                color: "#fff",
+              })
+            }
+          >
+            {currentTask.title}
+          </Text>
+          <Text>{getIndicator(currentTask.level_primary)}</Text>
+        </View>
+        <View style={styles.border}>
+          <Text
+            style={{
               color: "#fff",
-            })
-          }
-        >
-          {currentTask.title}
-        </Text>
-        <Text>{getIndicator(currentTask.level_primary)}</Text>
+              padding: 5,
+            }}
+          >
+            {currentTask.body}
+          </Text>
+        </View>
+        <View>
+          <Text style={{ padding: 3, color: "white", textAlign: "right" }}>
+            Сделать до: {currentTask.date}
+          </Text>
+        </View>
       </View>
-      <View style={styles.border}>
-        <Text
-          style={{
-            color: "#fff",
-            padding: 5,
-          }}
-        >
-          {currentTask.body}
-        </Text>
-      </View>
-      <View>
-        <Text style={{ padding: 3, color: "white", textAlign: "right" }}>
-          Сделать до: {currentTask.date}
-        </Text>
-      </View>
-    </View>
+    </TouchableOpacity>
   );
 }
 
