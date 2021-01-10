@@ -95,7 +95,7 @@ class Authentication extends React.Component {
             style={{ marginTop: "20px", width: "5%" }}
             title="Войти"
           />
-          <StatusBar style="auto" />
+          <StatusBar style="black" />
         </View>
       </View>
     );
