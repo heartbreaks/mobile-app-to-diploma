@@ -10,7 +10,7 @@ function GeneralScreen(props) {
       {props.token != null ? <AppNavigator /> : <Auth />}
     </View>
   );
-} 
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -19,10 +19,10 @@ const styles = StyleSheet.create({
   },
 });
 
-function mapStateToProps(state){
+function mapStateToProps(state) {
   return {
-    token: state.token
-  }
+    token: state.token,
+  };
 }
 
-export default connect(mapStateToProps)(GeneralScreen)
+export default connect(mapStateToProps)(GeneralScreen);

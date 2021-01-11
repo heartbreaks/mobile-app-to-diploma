@@ -89,4 +89,20 @@ router.post(
     }
   }
 );
+
+router.get("/employers", async (req, res) => {
+  try {
+
+    const candidate = await User.findAll();
+
+    if (!candidate) {
+      return res.status(400).json({ message: "No humans found" });
+    }
+
+    res.status(200).json({ message: "Humans found", candidate });
+  } catch (err) {
+    res.status(500).json({ message: "Вывалилась ошибка", err: err });
+  }
+});
+
 module.exports = router;

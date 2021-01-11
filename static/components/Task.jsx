@@ -39,8 +39,8 @@ function Task(props) {
   return (
     <TouchableOpacity
       onPress={() => {
-        navigation.navigate('CurrentTask', currentTask)
-        console.log(props)
+        navigation.navigate("CurrentTask", currentTask);
+        console.log(props);
       }}
     >
       <View style={styles.task}>

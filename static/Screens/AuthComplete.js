@@ -8,17 +8,21 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 function AuthComplete(props) {
   return (
     <View style={styles.authCompleted}>
-      <TouchableOpacity onPress={() => {
-        props.navigation.navigate('AddNewTaskScreen')
-      }}>
+      <TouchableOpacity
+        onPress={() => {
+          props.navigation.navigate("AddNewTaskScreen");
+        }}
+      >
         <View style={styles.cardForTasks}>
-          <Text style={{padding: 15, color: '#f5cb5c'}}>Создать задачу</Text>
+          <Text style={{ padding: 15, color: "#f5cb5c" }}>Создать задачу</Text>
         </View>
       </TouchableOpacity>
-      {
-        props.userRole === 2  ?  <AddNewEmployer navigation={props.navigation}/> : console.log(123)
-      }
-      <FinishedTasks navigation={props.navigation}/>
+      {props.userRole === 2 ? (
+        <AddNewEmployer navigation={props.navigation} />
+      ) : (
+        console.log(123)
+      )}
+      <FinishedTasks navigation={props.navigation} />
     </View>
   );
 }
@@ -29,22 +33,22 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   cardForTasks: {
-    backgroundColor: '#333533',
+    backgroundColor: "#333533",
     margin: 5,
     shadowColor: "#000",
-    shadowOffset:{
+    shadowOffset: {
       width: 0,
       height: 4,
     },
     shadowOpacity: 0.32,
     shadowRadius: 5.46,
     elevation: 9,
-  }
+  },
 });
 
 function mapStateToProps(state) {
-  const { userRole } = state
-  return {userRole}
+  const { userRole } = state;
+  return { userRole };
 }
 
-export default connect(mapStateToProps)(AuthComplete)
+export default connect(mapStateToProps)(AuthComplete);
