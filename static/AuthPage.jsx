@@ -80,18 +80,7 @@ class Authentication extends React.Component {
           </View>
           <Button
             {...{ disabled: isCorrect }}
-            onPress={() => {
-              this.props
-                .toLogin(login, password)
-                .then(async res => {
-                  if (res) {
-                    await this.setState({ userInfo: res.data });
-                  }
-                })
-                .catch(err => {
-                  console.log("Kill me", err);
-                });
-            }}
+            onPress={() => this.props.toLogin(login, password)}
             style={{ marginTop: "20px", width: "5%" }}
             title="Войти"
           />

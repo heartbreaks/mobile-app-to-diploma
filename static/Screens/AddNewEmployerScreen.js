@@ -93,7 +93,7 @@ function AddNewEmployerScreen(props) {
                       {
                         text: "Ok",
                         onPress: () => {
-                          console.log("Errno");
+                          console.log("Added");
                         },
                       },
                     ]

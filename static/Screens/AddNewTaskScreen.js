@@ -107,7 +107,7 @@ function AddNewTaskScreen(props) {
               );
             }
             let data = { title, body, executor, levelPrimary, date };
-            console.log("Pressed");
+
             props.addNewTask(data).then(req => {
               if (req.code === 200) {
                 Alert.alert("Задача добавлена", "Вы можете закрыть это окно", [
