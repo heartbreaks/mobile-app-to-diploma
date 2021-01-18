@@ -57,3 +57,18 @@ export const addNewTask = dataFlow => {
     }
   };
 };
+
+export const createNewEmployer = employerInfo => {
+  return async dispatch => {
+    try {
+      const res = await axios.post(
+        `http://192.168.1.6:5000/register?password=${employerInfo.password}&role=${employerInfo.role}&name=${employerInfo.name}&position=${employerInfo.position}&login=${employerInfo.login}`
+      );
+      console.log(res);
+      console.log("Add");
+      return { code: 201, msg: "User created" };
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};

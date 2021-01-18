@@ -4,7 +4,7 @@ import {
   Text,
   TextInput,
   View,
-  Button,
+  Alert,
   TouchableOpacity,
 } from "react-native";
 import { connect } from "react-redux";
@@ -22,6 +22,8 @@ function AddNewTaskScreen(props) {
   const [date, setDate] = React.useState(currentDate());
   const [levelPrimary, setLevelPrimary] = React.useState("");
 
+  const isFilled = title && body && executor && date && levelPrimary != "";
+
   function currentDate() {
     let dateNow = new Date().toLocaleTimeString("ru-ru", {
       year: "numeric",
@@ -31,8 +33,7 @@ function AddNewTaskScreen(props) {
 
     let dateNowArr = dateNow.split(".");
     dateNow = `${dateNowArr[2]}-${dateNowArr[1]}-${dateNowArr[0]}`;
-    console.log(dateNow);
-    return dateNow; 
+    return dateNow;
   }
 
   return (
@@ -78,7 +79,7 @@ function AddNewTaskScreen(props) {
             style={{ width: "100%" }}
             date={date}
             mode="date"
-            placeholder="Введите срок сдачи"
+            placeholder="Введите срок сдачи задачи"
             format="YYYY-MM-DD"
             minDate={date}
             maxDate="2030-12-31"
@@ -91,9 +92,34 @@ function AddNewTaskScreen(props) {
         </View>
         <TouchableOpacity
           onPress={() => {
+            if (!isFilled) {
+              return Alert.alert(
+                "Что то пошло не так",
+                "К сожалению что то пошло не так, проверьте пожалуйста введеные поля и попробуйте снова",
+                [
+                  {
+                    text: "Ok",
+                    onPress: () => {
+                      console.log("Errno");
+                    },
+                  },
+                ]
+              );
+            }
             let data = { title, body, executor, levelPrimary, date };
-            props.addNewTask(data);
-            console.log(data);
+            console.log("Pressed");
+            props.addNewTask(data).then(req => {
+              if (req.code === 200) {
+                Alert.alert("Задача добавлена", "Вы можете закрыть это окно", [
+                  {
+                    text: "Ok",
+                    onPress: () => {
+                      console.log("Errno");
+                    },
+                  },
+                ]);
+              }
+            });
           }}
         >
           <View style={styles.boxShadow}>
