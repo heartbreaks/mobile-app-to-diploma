@@ -11,10 +11,13 @@ export default function rootReducer(state = initialState, action) {
     case AUTH_USER:
       return { ...state, ...action.response.data };
     case GET_TICKETS:
+      console.log( action );
       return { ...state, tasks: action.response.data };
     case GET_EMPLOYERS:
       const userInfo = action.response.data.candidate.map((empl) => {
-        const {id, name} = empl
+        let {id, name} = empl
+        let userNames = name.split(' ')
+        name = `${userNames[0]} ${userNames[1]}`
         return {id, label: name, value: id}
       })
       return { ...state, humans: userInfo };

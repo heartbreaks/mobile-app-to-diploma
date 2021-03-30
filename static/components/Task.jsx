@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { connect } from "react-redux";
 import { Feather } from "@expo/vector-icons";
@@ -8,26 +8,11 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 function getIndicator(type) {
   switch (type) {
     case 1:
-      return (
-        <Feather name="chevrons-down" size={15} color="#00acee">
-          {" "}
-          Normal
-        </Feather>
-      );
+      return (<Text style={{color: '#00acee'}}>Нормально</Text>);
     case 2:
-      return (
-        <Feather name="alert-triangle" size={15} color="orange">
-          {" "}
-          Danger
-        </Feather>
-      );
+      return ( <Text style={{color: 'orange'}}>Средне</Text> );
     case 3:
-      return (
-        <FontAwesome name="pied-piper-alt" size={15} color="red">
-          {" "}
-          Critical
-        </FontAwesome>
-      );
+      return (  <Text style={{color: 'red'}}>Срочно</Text> );
     default:
       return <Text>Life is pain</Text>;
   }
@@ -40,43 +25,47 @@ function Task(props) {
     <TouchableOpacity
       onPress={() => {
         navigation.navigate("CurrentTask", currentTask);
-        console.log(props);
       }}
     >
       <View style={styles.task}>
         <View style={styles.head}>
           <Text
             style={
-              (styles.border,
+              (
               {
                 fontSize: 15,
                 fontWeight: "bold",
                 paddingBottom: 3,
                 borderBottomColor: "white",
                 borderBottomWidth: 1.5,
-                color: "#fff",
+                color: "#000",
               })
             }
           >
             {currentTask.title}
           </Text>
-          <Text>{getIndicator(currentTask.level_primary)}</Text>
         </View>
-        <View style={styles.border}>
+        <View>
           <Text
             style={{
-              color: "#fff",
+              color: "#000",
               padding: 5,
             }}
           >
             {currentTask.body}
           </Text>
         </View>
-        <View>
-          <Text style={{ padding: 3, color: "white", textAlign: "right" }}>
-            Сделать до: {currentTask.date}
+        <View style={{flex: 1, flexDirection: 'row', marginTop: 15, marginBottom: 8, justifyContent: "space-between", alignItems: 'center'}}>
+          <Text style={{ padding: 3, color: "#8FD14F", order: 1}}>
+            {new Date(currentTask.date).toLocaleDateString('ru-Ru', {day: 'numeric', month: 'long'})}
           </Text>
+          <Text style={{order: 0}}>{getIndicator(currentTask.level_primary)}</Text>
+          <View style={{ alignItems: "center", flexDirection: 'row', order: 3}}>
+              <View style={{width: 24, height: 24, borderBottomRightRadius: 20,borderBottomLeftRadius: 20,borderTopRightRadius: 20,borderTopLeftRadius: 20, backgroundColor: 'red', marginRight: 3}}></View>
+              <Text style={{fontWeight: "bold"}}>Сергей Хохлов</Text>
+          </View>
         </View>
+        
       </View>
     </TouchableOpacity>
   );
@@ -85,27 +74,34 @@ function Task(props) {
 const styles = StyleSheet.create({
   task: {
     borderWidth: 1,
+    borderColor: '#DDEFFF',
     marginTop: 12,
+    borderBottomRightRadius: 20,
+    borderBottomLeftRadius: 20,
+    borderTopRightRadius: 20,
+    borderTopLeftRadius: 20,
     padding: 12,
     paddingBottom: 0,
     color: "#000",
     margin: 5,
-    backgroundColor: "#242423",
+    backgroundColor: "#fff",
   },
   border: {
     borderWidth: 2,
-    borderColor: "#333533",
+    borderColor: "#DEF0FF",
   },
   head: {
     flex: 1,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+    maxHeight: 30,
   },
 });
 
 function mapStateToProps(state, ownProps) {
   const currentTask = state.tasks.find(elem => elem.id == ownProps.id);
+  
   return { currentTask };
 }
 

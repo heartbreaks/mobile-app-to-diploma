@@ -8,7 +8,6 @@ export const toLogin = (login, password) => {
       const res = await axios.post(
         `http://192.168.1.6:5000/auth?login=${login}&password=${password}`
       );
-
       const users = await axios.get(`http://192.168.1.6:5000/employers`);
 
       dispatch({
@@ -43,7 +42,6 @@ export const getTasks = userId => {
       const res = await axios.get(
         `http://192.168.1.6:5000/tasks?executor=${userId}`
       );
-
       dispatch({
         type: AUTH_USER,
         response: res,
