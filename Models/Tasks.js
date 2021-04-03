@@ -17,7 +17,7 @@ const Tasks = db.define(
     level_primary: { type: DataTypes.INTEGER },
     appointment_by: {type: DataTypes.INTEGER}
   },
-  { timestamps: true }
+  { timestamps: false }
 );
 
 module.exports = Tasks;

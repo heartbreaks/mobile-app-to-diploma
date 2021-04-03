@@ -59,9 +59,9 @@ export const getTasks = userId => {
 export const addNewTask = dataFlow => {
   return async dispatch => {
     try {
-      console.log(dataFlow);
+      const {executor, title, body, date,levelPrimary, appointment_by} = dataFlow
       const res = await axios.post(
-        `http://192.168.1.6:5000/tasks/add?executor=${dataFlow.executor}&title=${dataFlow.title}&body=${dataFlow.body}&date=${dataFlow.date}&level_primary=${dataFlow.levelPrimary}&appointment_by=${dataFLow.appointment_by}`
+        `http://192.168.1.6:5000/tasks/add?executor=${executor}&title=${title}&body=${body}&date=${date}&level_primary=${levelPrimary}&appointment_by=${appointment_by}`
       );
 
       return { code: 200, msg: "Success" };
@@ -69,7 +69,7 @@ export const addNewTask = dataFlow => {
       console.log(err);
       return Alert.alert(
           `Ошибка`,
-          "В данный момент сервис не доступен, попробуйте снова чуть позжеы",
+          "В данный момент сервис не доступен, попробуйте снова чуть позже",
           [
             {
               text: "Ok",
