@@ -24,7 +24,7 @@ router.get("/", async (req, res) => {
 
 router.post("/add", async (req, res) => {
   try {
-    const { executor, title, body, date, level_primary, appointment_by } = req.query;
+    const { executor, title, body, date, level_primary, appointment_by, ended } = req.query;
     // console.log(typeof appointment_by, 'NODE');
     const task = new Tasks({
       executor,
@@ -32,7 +32,8 @@ router.post("/add", async (req, res) => {
       body,
       date,
       level_primary,
-      appointment_by
+      appointment_by,
+      ended
     });
 
     await task.save();

@@ -59,12 +59,12 @@ export const getTasks = userId => {
 export const addNewTask = dataFlow => {
   return async dispatch => {
     try {
-      const {executor, title, body, date,levelPrimary, appointment_by} = dataFlow
+      const {executor, title, body, date,levelPrimary, appointment_by, ended} = dataFlow
       const res = await axios.post(
-        `http://192.168.1.6:5000/tasks/add?executor=${executor}&title=${title}&body=${body}&date=${date}&level_primary=${levelPrimary}&appointment_by=${appointment_by}`
+        `http://192.168.1.6:5000/tasks/add?executor=${executor}&title=${title}&body=${body}&date=${date}&level_primary=${levelPrimary}&appointment_by=${appointment_by}&ended=${ended}`
       );
 
-      return { code: 200, msg: "Success" };
+      return { code: 200, msg: "Success", res };
     } catch (err) {
       console.log(err);
       return Alert.alert(

@@ -106,7 +106,7 @@ function AddNewTaskScreen(props) {
                 ]
               );
             }
-            let data = { title, body, executor, levelPrimary, date, appointment_by: props.currentUserId };
+            let data = { title, body, executor, levelPrimary, date, appointment_by: props.currentUserId, ended: 1 };
 
             props.addNewTask(data).then(req => {
               if (req.code === 200) {
