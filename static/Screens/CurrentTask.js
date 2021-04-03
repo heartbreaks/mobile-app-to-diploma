@@ -6,23 +6,35 @@ export function CurrentTask({ navigation }) {
   console.log();
   return (
     <View style={styles.container}>
-      <View style={{ padding: 5, textAlign: "center" }}>
-        <Text style={{ fontSize: 18, color: "white", textAlign: "left" }}>
+      <View style={{ padding: 5}}>
+        <Text style={styles.cardHead}>
           {navigation.getParam("title")}
         </Text>
+        <View style={{ borderWidth: 2, marginTop: 13, padding: 5, marginBottom: 23, borderColor: "#ECECEC" }}>
+          <Text style={{ fontSize: 16, color: "black", textAlign: "left" }}>
+            {navigation.getParam("body")}
+          </Text>
+        </View>
+        <View style={styles.toDeadLine}>
+          <View>
+            <Text>Дедлайн</Text>
+          </View>
+          <View style={styles.deadline}></View>
+        </View>
+        <View style={{marginTop: 15}}>
+          <Text style={{fontSize: 20}}>Назначение от:</Text>
+          <View style={{flex: 0, flexDirection: "row", alignItems: 'center', marginTop: 5}}>
+            <View style={styles.cardAppointmentBy}></View>
+            <Text style={{fontSize: 20}}>{navigation.getParam('appointment_by')}</Text>
+          </View>
+        </View>
       </View>
-      <View style={{ borderWidth: 2, padding: 13, borderColor: "white" }}>
-        <Text style={{ fontSize: 16, color: "white", textAlign: "left" }}>
-          {navigation.getParam("body")}
-        </Text>
-      </View>
-      <View></View>
       <TouchableOpacity>
         <View style={styles.finishTask}>
           <Text
             style={{
               fontSize: 16,
-              color: "#242423",
+              color: "black",
               textAlign: "center",
               padding: 4,
             }}
@@ -37,18 +49,34 @@ export function CurrentTask({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "space-between",
-    alignItems: "center",
-    margin: 5,
-    backgroundColor: "#242423",
+    backgroundColor: "#FAFDFF",
+  },
+  cardHead: {
+    fontSize: 26,
+    marginTop: 25,
+  },
+  cardAppointmentBy: {
+    backgroundColor: "#12CDD4",
+    width: 40,
+    height: 40,
+    borderBottomRightRadius: 20,
+    borderBottomLeftRadius: 20,
+    borderTopRightRadius: 20,
+    borderTopLeftRadius: 20,
+    marginRight: 5,
   },
   finishTask: {
-    backgroundColor: "#f5cb5c",
-    borderColor: "#f5cb5c",
+    backgroundColor: "#12CDD4",
+    borderColor: "#12CDD4",
     borderWidth: 2,
     borderRadius: 13,
     padding: 10,
     margin: 5,
     fontSize: 27,
   },
+  deadline: {
+    height: 10,
+    marginTop: 5,
+    backgroundColor: '#12CDD4'
+  }
 });

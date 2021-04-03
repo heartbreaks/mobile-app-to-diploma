@@ -106,7 +106,7 @@ function AddNewTaskScreen(props) {
                 ]
               );
             }
-            let data = { title, body, executor, levelPrimary, date };
+            let data = { title, body, executor, levelPrimary, date, appointment_by: props.currentUserId };
 
             props.addNewTask(data).then(req => {
               if (req.code === 200) {
@@ -173,6 +173,7 @@ const styles = StyleSheet.create({
 function mapStateToProps(state) {
   return {
     employers: state.humans,
+    currentUserId: state.userId
   };
 }
 function mapDispatchToProps(dispatch) {

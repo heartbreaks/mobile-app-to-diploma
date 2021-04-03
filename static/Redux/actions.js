@@ -40,10 +40,14 @@ export const getTasks = userId => {
   return async dispatch => {
     try {
       const res = await axios.get(
-        `http://192.168.1.6:5000/tasks?executor=${userId}`
+        `http://192.168.1.6:5000/tasks`, {
+          params: {
+            executor: userId
+          }
+        }
       );
       dispatch({
-        type: AUTH_USER,
+        type: 'GET_TICKETS',
         response: res,
       });
     } catch (err) {
@@ -55,12 +59,14 @@ export const getTasks = userId => {
 export const addNewTask = dataFlow => {
   return async dispatch => {
     try {
+      console.log(dataFlow);
       const res = await axios.post(
-        `http://192.168.1.6:5000/tasks/add?executor=${dataFlow.executor}&title=${dataFlow.title}&body=${dataFlow.body}&date=${dataFlow.date}&level_primary=${dataFlow.levelPrimary}`
+        `http://192.168.1.6:5000/tasks/add?executor=${dataFlow.executor}&title=${dataFlow.title}&body=${dataFlow.body}&date=${dataFlow.date}&level_primary=${dataFlow.levelPrimary}&appointment_by=${dataFLow.appointment_by}`
       );
 
       return { code: 200, msg: "Success" };
     } catch (err) {
+      console.log(err);
       return Alert.alert(
           `Ошибка`,
           "В данный момент сервис не доступен, попробуйте снова чуть позжеы",

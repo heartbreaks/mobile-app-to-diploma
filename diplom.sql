@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Янв 10 2021 г., 08:27
--- Версия сервера: 10.3.13-MariaDB-log
--- Версия PHP: 7.1.32
+-- Время создания: Мар 30 2021 г., 22:22
+-- Версия сервера: 10.1.44-MariaDB
+-- Версия PHP: 7.1.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -77,22 +76,22 @@ CREATE TABLE `tasks` (
   `title` varchar(150) NOT NULL,
   `body` text NOT NULL,
   `date` date NOT NULL,
-  `level_primary` int(11) NOT NULL
+  `level_primary` int(11) NOT NULL,
+  `appointment_by` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `tasks`
 --
 
-INSERT INTO `tasks` (`id`, `executor`, `title`, `body`, `date`, `level_primary`) VALUES
-(1, 1, 'Сделать API ', 'Необходимо сделать API для создания карточки на человека', '2021-01-03', 3),
-(3, 19, 'Сворганить нормальный рендер', 'test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test ', '2021-01-06', 3),
-(4, 19, 'Сделать что нибудь уже', 'test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test ', '2021-02-12', 2),
-(33, 1, 'Сверстать корректно карточку', 'Надо как то уместить текст тела, или скроллить его, потому что енто pi*dec если все отвалится.\r\n\r\nПлюс необходимо сварганить отображение уровная сроков карточки', '2021-01-16', 1),
-(667, 1, 'Тестовое апи на добавление карточки', 'Тестовое тело для апи на добавление карточки', '2021-05-04', 1),
-(668, 1, 'Тестовое апи на добавление карточки', 'Тестовое тело для апи на добавление карточки', '2021-05-04', 1),
-(672, 1, 'Тесто', 'Тестовое тело для апи на добавление карточки', '2021-05-04', 3),
-(673, 1, 'Тесто', 'Тестовое тело для апи на добавление карточки', '2021-05-04', 3);
+INSERT INTO `tasks` (`id`, `executor`, `title`, `body`, `date`, `level_primary`, `appointment_by`) VALUES
+(1, 1, 'Сделать API ', 'Необходимо сделать API для создания карточки на человека', '2021-01-03', 3, 19),
+(3, 19, 'Сворганить нормальный рендер', 'test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test ', '2021-01-06', 3, 1),
+(33, 1, 'Сверстать корректно карточку', 'Надо как то уместить текст тела, или скроллить его, потому что енто pi*dec если все отвалится.\r\n\r\nПлюс необходимо сварганить отображение уровная сроков карточки', '2021-01-16', 1, 19),
+(667, 1, 'Тестовое апи на добавление карточки', 'Тестовое тело для апи на добавление карточки', '2021-05-04', 1, 19),
+(668, 1, 'Тестовое апи на добавление карточки', 'Тестовое тело для апи на добавление карточки', '2021-05-04', 1, 19),
+(672, 1, 'Тесто', 'Тестовое тело для апи на добавление карточки', '2021-05-04', 3, 19),
+(673, 1, 'Тесто', 'Тестовое тело для апи на добавление карточки', '2021-05-04', 3, 19);
 
 -- --------------------------------------------------------
 
@@ -105,7 +104,7 @@ CREATE TABLE `users` (
   `login` varchar(30) NOT NULL,
   `password` text NOT NULL,
   `name` varchar(50) DEFAULT NULL,
-  `role` int(11) NOT NULL DEFAULT 3,
+  `role` int(11) NOT NULL DEFAULT '3',
   `position` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -174,7 +173,7 @@ ALTER TABLE `tasks`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц

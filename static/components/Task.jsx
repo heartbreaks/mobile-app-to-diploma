@@ -20,6 +20,7 @@ function getIndicator(type) {
 
 function Task(props) {
   const { currentTask, navigation } = props;
+  const appointmentBy = currentTask.appointment_by.length > 13 ? currentTask.appointment_by.slice(0, 11) + '…' : currentTask.appointment_by
 
   return (
     <TouchableOpacity
@@ -62,7 +63,7 @@ function Task(props) {
           <Text style={{order: 0}}>{getIndicator(currentTask.level_primary)}</Text>
           <View style={{ alignItems: "center", flexDirection: 'row', order: 3}}>
               <View style={{width: 24, height: 24, borderBottomRightRadius: 20,borderBottomLeftRadius: 20,borderTopRightRadius: 20,borderTopLeftRadius: 20, backgroundColor: 'red', marginRight: 3}}></View>
-              <Text style={{fontWeight: "bold"}}>Сергей Хохлов</Text>
+              <Text style={{fontWeight: "bold"}}>{appointmentBy}</Text>
           </View>
         </View>
         
@@ -101,7 +102,6 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(state, ownProps) {
   const currentTask = state.tasks.find(elem => elem.id == ownProps.id);
-  
   return { currentTask };
 }
 
