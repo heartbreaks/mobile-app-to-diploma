@@ -1,9 +1,10 @@
 import React from "react";
 import { Text, View, StyleSheet } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import StrokeOfDeadline from '../components/StrokeOfDeadline'
 
 export function CurrentTask({ navigation }) {
-  console.log();
+
   return (
     <View style={styles.container}>
       <View style={{ padding: 5}}>
@@ -15,12 +16,7 @@ export function CurrentTask({ navigation }) {
             {navigation.getParam("body")}
           </Text>
         </View>
-        <View style={styles.toDeadLine}>
-          <View>
-            <Text>Дедлайн</Text>
-          </View>
-          <View style={styles.deadline}></View>
-        </View>
+        <StrokeOfDeadline dates={{ createdAt: navigation.getParam('createdAt'), date: navigation.getParam('date')}}/>
         <View style={{marginTop: 15}}>
           <Text style={{fontSize: 20}}>Назначение от:</Text>
           <View style={{flex: 0, flexDirection: "row", alignItems: 'center', marginTop: 5}}>
