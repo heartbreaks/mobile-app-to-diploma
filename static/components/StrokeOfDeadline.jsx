@@ -14,7 +14,7 @@ class StrokeOfDeadline extends React.Component {
         const {createdAt, date} = this.props.dates;
         const start = createdAt.split('-')
         const end = date.split('-')
-        const a = Math.round(100 - ( new Date(end[0], end[1] - 1, end[2]) - new Date(start[0], start[1] - 1, start[2])) / new Date())
+        const a = Math.round((100 - ( new Date(end[0], end[1] - 1, end[2]) - new Date(start[0], start[1] - 1, start[2])) / new Date() )/ 3)
         console.log(a, end);
         this.setState({percent: a})
     }
@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
     },
     headStroke: {
         fontSize: 16,
+        fontWeight: '300'
     },
     borderStroke: {
         borderWidth: 1,

@@ -12,16 +12,16 @@ export function CurrentTask({ navigation }) {
           {navigation.getParam("title")}
         </Text>
         <View style={{ borderWidth: 2, marginTop: 13, padding: 5, marginBottom: 23, borderColor: "#ECECEC" }}>
-          <Text style={{ fontSize: 16, color: "black", textAlign: "left" }}>
+          <Text style={{ fontSize: 16, color: "black", textAlign: "left", fontWeight: '300' }}>
             {navigation.getParam("body")}
           </Text>
         </View>
         <StrokeOfDeadline dates={{ createdAt: navigation.getParam('createdAt'), date: navigation.getParam('date')}}/>
-        <View style={{marginTop: 15}}>
-          <Text style={{fontSize: 20}}>Назначение от:</Text>
+        <View style={{marginTop: 40}}>
+          <Text style={{fontSize: 20, fontWeight: '300' }}>Назначение от:</Text>
           <View style={{flex: 0, flexDirection: "row", alignItems: 'center', marginTop: 5}}>
             <View style={styles.cardAppointmentBy}></View>
-            <Text style={{fontSize: 20}}>{navigation.getParam('appointment_by')}</Text>
+            <Text style={{fontSize: 20, fontWeight: '200' }}>{navigation.getParam('appointment_by')}</Text>
           </View>
         </View>
       </View>
@@ -46,10 +46,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#FAFDFF",
+    justifyContent: 'space-between'
   },
   cardHead: {
     fontSize: 26,
     marginTop: 25,
+    fontWeight: '200'
   },
   cardAppointmentBy: {
     backgroundColor: "#12CDD4",

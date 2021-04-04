@@ -25,7 +25,7 @@ router.get("/", async (req, res) => {
 router.post("/add", async (req, res) => {
   try {
     const { executor, title, body, date, level_primary, appointment_by, ended } = req.query;
-    // console.log(typeof appointment_by, 'NODE');
+
     const task = new Tasks({
       executor,
       title,
@@ -42,5 +42,21 @@ router.post("/add", async (req, res) => {
     res.status(500).json({ message: "Вывалилась ошибка", err: err });
   }
 });
+
+router.put('/end-task', async (req, res) => {
+  try {
+    const { ended, id } = req.query
+
+    await Tasks.update({
+      ended: ended,
+      updatedAt: new Date()
+    }, {
+      where: {id: id}
+    })
+    res.status(200).json({ message: "Task updated" });
+  }catch (err) {
+    res.status(500).json({msg: err.name})
+  }
+})
 
 module.exports = router;
