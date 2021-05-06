@@ -17,6 +17,7 @@ router.get("/", async (req, res) => {
     }
     console.log(tasks);
     res.status(200).json({ message: "Tasks found", tasks });
+    res.end('<h1>Tasks API</h1>')
   } catch (err) {
     res.status(500).json({ message: "Вывалилась ошибка", err: err });
   }
