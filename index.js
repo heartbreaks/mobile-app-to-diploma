@@ -16,13 +16,12 @@ async function start() {
     database
       .authenticate()
       .then(() => console.log("Database OK")) // connect to db
-      .catch(err => console.log("Errno", err));
 
     app.listen(5000, () =>
       console.log(`App has been started on port...${PORT}`)
     ); // run the server
   } catch (err) {
-    console.log("Server errno");
+    console.log("Server errno", err.name);
   }
 }
 start();
