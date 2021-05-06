@@ -9,7 +9,8 @@ app.use(cors());
 app.use(express.json());
 app.use("/", require("./Routers/auth.router"));
 app.use("/tasks", require("./Routers/tasks.router"));
-const PORT = config.port || 5000;
+
+const PORT = port = process.env.PORT || 80;
 
 async function start() {
   try {
