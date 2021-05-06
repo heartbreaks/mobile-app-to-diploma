@@ -13,15 +13,15 @@ const PORT = config.port || 5000;
 
 async function start() {
   try {
-    database
-      .authenticate()
-      .then(() => console.log("Database OK")) // connect to db
-
-    app.listen(5000, () =>
+    app.listen(PORT, () =>
       console.log(`App has been started on port...${PORT}`)
     ); // run the server
+    database
+        .authenticate()
+        .then(() => console.log("Database OK")).catch(err => {
+          throw new Error('Ошибка подключения')
+    }) // connect to db
   } catch (err) {
-    console.log("Server errno", err.name);
   }
 }
 start();
