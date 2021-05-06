@@ -8,7 +8,7 @@ router.get("/", async (req, res) => {
   try {
     const { executor } = req.query;
     console.log(executor);
-    const tasks = await Tasks.findAll({ where: { executor: executor } });
+    const tasks = await Tasks.findAll({ where: { executor: executor, ended: 0 } });
 
     if (!tasks) {
       return res
@@ -24,7 +24,7 @@ router.get("/", async (req, res) => {
 
 router.post("/add", async (req, res) => {
   try {
-    const { executor, title, body, date, level_primary, appointment_by, ended } = req.query;
+    const { executor, title, body, date, level_primary, appointment_by, ended = 0 } = req.query;
 
     const task = new Tasks({
       executor,
