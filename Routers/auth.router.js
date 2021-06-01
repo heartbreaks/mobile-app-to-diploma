@@ -23,7 +23,7 @@ router.post("/register", async (req, res) => {
     const candidate = await User.findOne({ where: { login: login } });
 
     if (candidate) {
-      return res.status(400).json({ message: "Login is registered" });
+      return res.status(400).json({ message: "Такой логин уже зарегестрирован" });
     }
 
     const hashesPassword = await bcrypt.hash(password, 12);
@@ -36,10 +36,8 @@ router.post("/register", async (req, res) => {
       position,
     });
 
-    console.log(user.dataValues);
-
     await user.save();
-    res.status(201).json({ message: "Register was succeshul" });
+    res.status(201).json({ message: "Регистрация прошла успешно" });
   } catch (err) {
     res.status(500).json({ message: "Вывалилась ошибка", err: err });
   }
@@ -84,8 +82,7 @@ router.post(
 
       res.json({ token, userId: user.id, userRole: user.role });
     } catch (err) {
-      res.status(500).json({ message: "Вывалилась ошибка", err: err });
-      console.log(err);
+      res.status(500).json({ message: "Вывалилась ошибка при авторизации", err: err });
     }
   }
 );
