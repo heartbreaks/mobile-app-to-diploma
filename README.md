@@ -3,5 +3,6 @@
 Поддерживается пока только на IOS.
 
 # Текущая модель для представления функциональности приложения
-![image](https://user-images.githubusercontent.com/55318003/120298541-9f3ef480-c2e3-11eb-8a06-48bcde8049e4.png)
+![image](https://user-images.githubusercontent.com/55318003/120299139-2d1adf80-c2e4-11eb-8061-6d5aca24d687.png)
+
 
