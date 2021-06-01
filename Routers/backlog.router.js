@@ -48,10 +48,55 @@ router.post('/get-task', async (req, res) => {
         await Backlog.destroy({where: {id:taskID}})
         res.status(201).json({msg: 'Задача добавлена'})
     } catch (err) {
-        console.log(err.body)
         return res.status(500).json({msg: 'Капитан, у нас проблема'})
 
     }
 })
 
+router.post('/add', async (req, res) => {
+    try {
+        const {title, body, date, level_primary, appointment_by} = req.query
+
+        const user = await Users.findOne({where: {id: appointment_by, isAdmin: 1}})
+
+        if (!user) {
+            throw new Error('Incorrect permissions')
+        }
+        const taskBacklog = new Backlog({
+            title, body, date, level_primary, appointment_by
+        })
+
+        await taskBacklog.save()
+        res.status(201).json({msg: 'Created', taskBacklog, user: Boolean(user)})
+    }catch (err) {
+        if (err.message == 'Incorrect permissions') {
+            return res.status(400).json({msg: 'Недостаточно прав', code: 400})
+        }
+        console.log(err)
+       return res.status(400).json({msg: 'Неверные данные', code: 400})
+    }
+})
+
+
+router.post('/destroy', async (req, res) => {
+    try {
+        const {appointment_by, taskId} = req.query
+        const Task = await Backlog.findOne({where: {id: taskId}})
+
+        if (!Task) {
+            throw new Error('Нет такой задачи')
+        }
+
+        const user = await Users.findOne({where: {id: appointment_by, isAdmin: true}})
+
+        if (!user) {
+            throw new Error('Недостаточно прав')
+        }
+
+        await Task.destroy()
+        res.status(200).json({msg: 'Deleted', code: 200})
+    }catch (err) {
+        return res.status(403).json({msg: err.message, err: err})
+    }
+})
 module.exports = router;
