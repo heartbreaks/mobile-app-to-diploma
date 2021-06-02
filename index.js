@@ -9,7 +9,7 @@ app.use("/", require("./Routers/auth.router"));
 app.use("/tasks", require("./Routers/tasks.router"));
 app.use("/backlog", require("./Routers/backlog.router"));
 
-const PORT = port = process.env.PORT || 80;
+const PORT = port = process.env.PORT || 500;
 
 async function start() {
   try {

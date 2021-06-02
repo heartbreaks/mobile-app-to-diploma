@@ -2,7 +2,7 @@ import axios from "axios";
 import { AUTH_USER, GET_EMPLOYERS, ADD_NEW_TASK } from "./types";
 import {Alert} from "react-native";
 
-const url = `http://192.168.1.6:5000`
+const url = `http://192.168.1.6:500`
 
 export const toLogin = (login, password) => {
   return async dispatch => {
@@ -10,7 +10,7 @@ export const toLogin = (login, password) => {
       const res = await axios.post(
         `${url}/auth?login=${login}&password=${password}`
       );
-      const users = await axios.get(`http://192.168.1.6:5000/employers`);
+      const users = await axios.get(`${url}/employers`);
 
       dispatch({
         type: AUTH_USER,

@@ -10,8 +10,8 @@ function FinishedTasks(props) {
         props.navigation.navigate("FinishedTasks");
       }}
     >
-      <View style={styles.cardForTasks}>
-        <Text style={{ padding: 15, color: "#f5cb5c" }}>
+      <View style={styles.card}>
+        <Text style={{ padding: 15, color: "white", position: 'absolute', top: '30%' }}>
           Завершенные задачи
         </Text>
       </View>
@@ -20,10 +20,12 @@ function FinishedTasks(props) {
 }
 
 const styles = StyleSheet.create({
-  cardForTasks: {
-    backgroundColor: "#333533",
+  card: {
+    backgroundColor: "#2D9BF0",
     margin: 5,
     shadowColor: "#000",
+    width: 150,
+    height: 150,
     shadowOffset: {
       width: 0,
       height: 4,
