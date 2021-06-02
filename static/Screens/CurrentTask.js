@@ -1,9 +1,11 @@
 import React from "react";
 import { Text, View, StyleSheet } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import StrokeOfDeadline from '../components/StrokeOfDeadline'
+import CurrentTaskButton from "../components/CurrentTaskButton";
 
 export function CurrentTask({ navigation }) {
-  console.log();
+
   return (
     <View style={styles.container}>
       <View style={{ padding: 5}}>
@@ -11,49 +13,34 @@ export function CurrentTask({ navigation }) {
           {navigation.getParam("title")}
         </Text>
         <View style={{ borderWidth: 2, marginTop: 13, padding: 5, marginBottom: 23, borderColor: "#ECECEC" }}>
-          <Text style={{ fontSize: 16, color: "black", textAlign: "left" }}>
+          <Text style={{ fontSize: 16, color: "black", textAlign: "left", fontWeight: '300' }}>
             {navigation.getParam("body")}
           </Text>
         </View>
-        <View style={styles.toDeadLine}>
-          <View>
-            <Text>Дедлайн</Text>
-          </View>
-          <View style={styles.deadline}></View>
-        </View>
-        <View style={{marginTop: 15}}>
-          <Text style={{fontSize: 20}}>Назначение от:</Text>
+        <StrokeOfDeadline dates={{ createdAt: navigation.getParam('createdAt'), date: navigation.getParam('date')}}/>
+        <View style={{marginTop: 40}}>
+          <Text style={{fontSize: 20, fontWeight: '300' }}>Назначение от:</Text>
           <View style={{flex: 0, flexDirection: "row", alignItems: 'center', marginTop: 5}}>
             <View style={styles.cardAppointmentBy}></View>
-            <Text style={{fontSize: 20}}>{navigation.getParam('appointment_by')}</Text>
+            <Text style={{fontSize: 20, fontWeight: '200' }}>{navigation.getParam('appointment_by')}</Text>
           </View>
         </View>
       </View>
-      <TouchableOpacity>
-        <View style={styles.finishTask}>
-          <Text
-            style={{
-              fontSize: 16,
-              color: "black",
-              textAlign: "center",
-              padding: 4,
-            }}
-          >
-            Завершить задачу
-          </Text>
-        </View>
-      </TouchableOpacity>
+      <CurrentTaskButton taskId={navigation.getParam('id')} ended={navigation.getParam('ended')}/>
     </View>
   );
 }
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#FAFDFF",
+    justifyContent: 'space-between'
   },
   cardHead: {
     fontSize: 26,
     marginTop: 25,
+    fontWeight: '200'
   },
   cardAppointmentBy: {
     backgroundColor: "#12CDD4",
@@ -65,15 +52,7 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 20,
     marginRight: 5,
   },
-  finishTask: {
-    backgroundColor: "#12CDD4",
-    borderColor: "#12CDD4",
-    borderWidth: 2,
-    borderRadius: 13,
-    padding: 10,
-    margin: 5,
-    fontSize: 27,
-  },
+
   deadline: {
     height: 10,
     marginTop: 5,
