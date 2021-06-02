@@ -19,6 +19,7 @@ async function start() {
     database
         .authenticate()
         .then(() => console.log("Database OK"))// connect to db
+
   } catch (err) {
   }
 }
