@@ -5,14 +5,18 @@ import {Alert} from "react-native";
 export const toLogin = (login, password) => {
   return async dispatch => {
     try {
+      dispatch({
+        type: AUTH_USER,
+        response: {fetching: true,},
+      });
       const res = await axios.post(
-        `http://192.168.1.6:5000/auth?login=${login}&password=${password}`
+        `http://192.168.1.6:80/auth?login=${login}&password=${password}`
       );
-      const users = await axios.get(`http://192.168.1.6:5000/employers`);
+      const users = await axios.get(`http://192.168.1.6:80/employers`);
 
       dispatch({
         type: AUTH_USER,
-        response: res,
+        response: Object.assign({}, res, {fetching: false}),
       });
 
       dispatch({
@@ -27,7 +31,7 @@ export const toLogin = (login, password) => {
             {
               text: "Ok",
               onPress: () => {
-                console.log("Errno");
+                console.log(err);
               },
             },
           ]

@@ -3,7 +3,8 @@ import { AUTH_USER, GET_TICKETS, GET_EMPLOYERS } from "./types";
 const initialState = {
   token: null,
   tasks: null,
-  humans: null
+  humans: null,
+  fetching: false,
 };
 
 export default function rootReducer(state = initialState, action) {
