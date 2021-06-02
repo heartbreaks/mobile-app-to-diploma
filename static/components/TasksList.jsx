@@ -14,6 +14,7 @@ class TasksList extends React.Component {
     const onInitScreen = () => {
       this.props.getTasks(this.props.userId);
     };
+    console.log(this.props.tasks, this.props.tasks)
     onInitScreen();
     setTimeout(onInitScreen, 300000);
   }
@@ -22,13 +23,11 @@ class TasksList extends React.Component {
     const { tasks, navigation } = this.props;
     return (
       <ScrollView style={styles.tasksList}>
-        {tasks ? (
+        {tasks == null || tasks.length == 0 ? <Text>У вас нет задач</Text> : tasks ? (
           tasks.map(task => {
             return <Task key={task.id} navigation={navigation} id={task.id} />;
           })
-        ) : (
-          <Text>Load</Text>
-        )}
+        ) : (<Text>Load</Text>)}
       </ScrollView>
     );
   }
