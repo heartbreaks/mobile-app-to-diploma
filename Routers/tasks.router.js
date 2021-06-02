@@ -7,7 +7,6 @@ const { check, validationResult } = require("express-validator");
 router.get("/", async (req, res) => {
   try {
     const { executor } = req.query;
-    console.log(executor);
     const tasks = await Tasks.findAll({ where: { executor: executor, ended: 0 } });
 
     if (!tasks) {
@@ -15,7 +14,6 @@ router.get("/", async (req, res) => {
         .status(400)
         .json({ message: "Tasks with this executor not find" });
     }
-    console.log(tasks);
     res.status(200).json({ message: "Tasks found", tasks });
     res.end('<h1>Tasks API</h1>')
   } catch (err) {

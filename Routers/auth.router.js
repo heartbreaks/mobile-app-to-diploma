@@ -36,8 +36,6 @@ router.post("/register", async (req, res) => {
       position,
     });
 
-    console.log(user.dataValues);
-
     await user.save();
     res.status(201).json({ message: "Регистрация прошла успешно" });
   } catch (err) {
@@ -84,8 +82,7 @@ router.post(
 
       res.json({ token, userId: user.id, userRole: user.role });
     } catch (err) {
-      res.status(500).json({ message: "Вывалилась ошибка", err: err });
-      console.log(err);
+      res.status(500).json({ message: "Вывалилась ошибка при авторизации", err: err });
     }
   }
 );

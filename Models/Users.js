@@ -15,6 +15,7 @@ const User = db.define(
     name: { type: DataTypes.STRING },
     role: { type: DataTypes.INTEGER },
     position: { type: DataTypes.STRING },
+    isAdmin: {type: DataTypes.INTEGER }
   },
   { timestamps: false }
 );
