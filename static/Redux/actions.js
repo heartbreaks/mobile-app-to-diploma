@@ -1,5 +1,5 @@
 import axios from "axios";
-import { AUTH_USER, GET_EMPLOYERS, ADD_NEW_TASK } from "./types";
+import { AUTH_USER, GET_EMPLOYERS, ADD_NEW_TASK, GET_BACKLOG_TASKS } from "./types";
 import {Alert} from "react-native";
 
 const url = `http://192.168.1.6:500`
@@ -93,7 +93,6 @@ export const createNewEmployer = employerInfo => {
 export const endTask = (id, end) => {
   return async dispatch => {
     try {
-      console.log(id, end)
       const res = await axios.put( `${url}/tasks/end-task?id=${id}&ended=${end}`)
       return Alert.alert(
           `Успешно`,
@@ -106,5 +105,20 @@ export const endTask = (id, end) => {
       );
 
     }catch (err) {}
+  }
+}
+
+export const getBacklog = () => {
+  return async dispatch => {
+    try{
+      const res = await axios.get(`${url}/backlog`)
+
+      dispatch({
+        type: GET_BACKLOG_TASKS,
+        response: res
+      })
+    }catch (err) {
+
+    }
   }
 }

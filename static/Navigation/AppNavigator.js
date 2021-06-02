@@ -5,6 +5,7 @@ import { createStackNavigator } from "react-navigation-stack";
 import AuthComplete from "../Screens/AuthComplete";
 import { TasksScreen } from "../Screens/TasksScreen";
 import { CurrentTask } from "../Screens/CurrentTask";
+import {BacklogScreen} from "../Screens/BacklogScreen";
 import AddNewTaskScreen from "../Screens/AddNewTaskScreen";
 import AddNewEmployerScreen from "../Screens/AddNewEmployerScreen";
 import FinishedTasksScreen from "../Screens/FinishedTasksScreen";
@@ -32,6 +33,12 @@ const _AuthCompleteNavigator = createStackNavigator({
     screen: FinishedTasksScreen,
     navigationOptions: {
       title: "Законченные задачи",
+    },
+  },
+  BacklogScreen: {
+    screen: BacklogScreen,
+    navigationOptions: {
+      title: "Бэклог",
     },
   },
 });

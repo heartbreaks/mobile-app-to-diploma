@@ -1,10 +1,11 @@
-import { AUTH_USER, GET_TICKETS, GET_EMPLOYERS } from "./types";
+import { AUTH_USER, GET_TICKETS, GET_EMPLOYERS, GET_BACKLOG_TASKS } from "./types";
 
 const initialState = {
   token: null,
   tasks: null,
   humans: null,
   fetching: false,
+  backlog: null
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -26,6 +27,8 @@ export default function rootReducer(state = initialState, action) {
         return {id, label: name, value: id}
       })
       return { ...state, humans: userInfo };
+    case GET_BACKLOG_TASKS:
+      return { ...state, backlog: [...action.response.data.res] };
     default:
       return state;
   }
