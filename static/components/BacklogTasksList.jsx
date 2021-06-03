@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { getBacklog } from "../Redux/actions";
 import {ActivityIndicator, Alert} from "react-native";
 import Task from "./Task";
+import TaskBacklog from "./TaskBacklog";
 
 class BacklogTasksList extends React.Component {
     constructor(props) {
@@ -26,13 +27,12 @@ class BacklogTasksList extends React.Component {
 
     render() {
         const { backlog, navigation } = this.props;
-        console.log(this.state.fetching)
         return (
             <ScrollView style={styles.tasksList}>
                 <ActivityIndicator animating={this.state.fetching} size='large'/>
                 {backlog == null  ? <Text>У вас нет задач</Text> :
                     backlog.map(task => {
-                        return <Text>{task.title}</Text>;
+                        return <TaskBacklog key={task.id}  navigation={navigation} id={task.id}/>
                     })
                 }
             </ScrollView>

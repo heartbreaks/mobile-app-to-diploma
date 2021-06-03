@@ -5,6 +5,7 @@ import { createStackNavigator } from "react-navigation-stack";
 import AuthComplete from "../Screens/AuthComplete";
 import { TasksScreen } from "../Screens/TasksScreen";
 import { CurrentTask } from "../Screens/CurrentTask";
+import {BacklogCurrentTask} from '../Screens/BacklogCurrentTask'
 import {BacklogScreen} from "../Screens/BacklogScreen";
 import AddNewTaskScreen from "../Screens/AddNewTaskScreen";
 import AddNewEmployerScreen from "../Screens/AddNewEmployerScreen";
@@ -41,6 +42,12 @@ const _AuthCompleteNavigator = createStackNavigator({
       title: "Бэклог",
     },
   },
+  BacklogCurrentTask: {
+    screen: BacklogCurrentTask,
+    navigationOptions: {
+      title: "Задача бэклога",
+    },
+  },
 });
 
 const _TasksNavigator = createStackNavigator({
@@ -56,6 +63,7 @@ const _TasksNavigator = createStackNavigator({
       title: "Текущая задача",
     },
   },
+
 });
 
 const AppNavigator = createBottomTabNavigator({

@@ -1,4 +1,4 @@
-import { AUTH_USER, GET_TICKETS, GET_EMPLOYERS, GET_BACKLOG_TASKS } from "./types";
+import { AUTH_USER, GET_TICKETS, GET_EMPLOYERS, GET_BACKLOG_TASKS, UPDATE_BACKLOG_LIST } from "./types";
 
 const initialState = {
   token: null,
@@ -28,7 +28,23 @@ export default function rootReducer(state = initialState, action) {
       })
       return { ...state, humans: userInfo };
     case GET_BACKLOG_TASKS:
-      return { ...state, backlog: [...action.response.data.res] };
+      const newBacklog = action.response.data.res.map(task => {
+        const cardAppointmentBy = state.humans.find(human => human.id == task.appointment_by)
+        task.appointment_by = cardAppointmentBy.label
+        return task
+      })
+      return { ...state, backlog: newBacklog };
+    case UPDATE_BACKLOG_LIST:
+      let tasks = [action.response.data.res].map(task => {
+          const cardAppointmentBy = state.humans.find(human => human.id == task.appointment_by)
+          task.appointment_by = cardAppointmentBy.label
+          return task
+      })
+
+      const newTask = state.tasks.concat(tasks)
+      const newBacklogs = state.backlog.filter(el => el.id != action.taskId)
+
+      return { ...state, tasks: newTask, backlog: newBacklogs };
     default:
       return state;
   }

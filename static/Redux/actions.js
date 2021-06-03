@@ -1,5 +1,5 @@
 import axios from "axios";
-import { AUTH_USER, GET_EMPLOYERS, ADD_NEW_TASK, GET_BACKLOG_TASKS } from "./types";
+import { AUTH_USER, GET_EMPLOYERS, ADD_NEW_TASK, GET_BACKLOG_TASKS, UPDATE_BACKLOG_LIST } from "./types";
 import {Alert} from "react-native";
 
 const url = `http://192.168.1.6:500`
@@ -120,5 +120,38 @@ export const getBacklog = () => {
     }catch (err) {
 
     }
+  }
+}
+
+export const getTaskBacklog = (taskId, userId) => {
+  return async dispatch => {
+    try {
+      const res = await axios.post(`${url}/backlog/get-task?executor=${userId}&taskID=${taskId}`)
+
+      Alert.alert(
+          'Успешно',
+          'Задача была добавлена в ваш список активных задач, можете приступать',
+          [
+              {text: 'Ок'}
+          ]
+      )
+      dispatch({
+        type: UPDATE_BACKLOG_LIST,
+        response: res,
+        taskId: taskId
+      })
+    }catch (e) {
+     if (e.message == 'Request failed with status code 403') {
+       return Alert.alert(
+           'Ошибка',
+           'Такой задачи уже нет',
+           [
+             {text: 'Ок'}
+           ]
+       )
+     }
+
+    }
+
   }
 }
