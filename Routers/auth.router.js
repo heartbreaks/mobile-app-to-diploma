@@ -80,7 +80,7 @@ router.post(
         }
       );
 
-      res.json({ token, userId: user.id, userRole: user.role });
+      res.json({ token, userId: user.id, userRole: user.role, isAdmin: user.isAdmin });
     } catch (err) {
       res.status(500).json({ message: "Вывалилась ошибка при авторизации", err: err });
     }
