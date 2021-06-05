@@ -114,7 +114,7 @@ function AddNewTaskScreen(props) {
                   {
                     text: "Ok",
                     onPress: () => {
-                      console.log("Errno");
+                      console.log("Success");
                     },
                   },
                 ]);

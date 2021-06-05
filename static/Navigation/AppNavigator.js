@@ -8,6 +8,7 @@ import { CurrentTask } from "../Screens/CurrentTask";
 import {BacklogCurrentTask} from '../Screens/BacklogCurrentTask'
 import {BacklogScreen} from "../Screens/BacklogScreen";
 import AddNewTaskScreen from "../Screens/AddNewTaskScreen";
+import AddNewBacklogTask from "../Screens/AddNewBacklogTask"
 import AddNewEmployerScreen from "../Screens/AddNewEmployerScreen";
 import FinishedTasksScreen from "../Screens/FinishedTasksScreen";
 
@@ -48,6 +49,12 @@ const _AuthCompleteNavigator = createStackNavigator({
       title: "Задача бэклога",
     },
   },
+  AddNewBacklogTask: {
+    screen: AddNewBacklogTask,
+    navigationOptions: {
+      title: 'Создать задачу в бэклог'
+    }
+  }
 });
 
 const _TasksNavigator = createStackNavigator({

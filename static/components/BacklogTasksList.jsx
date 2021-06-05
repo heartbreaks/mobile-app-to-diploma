@@ -4,8 +4,8 @@ import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import { connect } from "react-redux";
 import { getBacklog } from "../Redux/actions";
 import {ActivityIndicator, Alert} from "react-native";
-import Task from "./Task";
 import TaskBacklog from "./TaskBacklog";
+import AdminButtonToAddTask from "./AdminButtomToAddTask";
 
 class BacklogTasksList extends React.Component {
     constructor(props) {
@@ -26,15 +26,17 @@ class BacklogTasksList extends React.Component {
     }
 
     render() {
-        const { backlog, navigation } = this.props;
+        const { backlog, navigation, isAdmin } = this.props;
         return (
             <ScrollView style={styles.tasksList}>
                 <ActivityIndicator animating={this.state.fetching} size='large'/>
-                {backlog == null  ? <Text>У вас нет задач</Text> :
+                {backlog == null  ? <Text>Новых задач нет</Text> :
                     backlog.map(task => {
                         return <TaskBacklog key={task.id}  navigation={navigation} id={task.id}/>
                     })
                 }
+                {Boolean(isAdmin) ? <AdminButtonToAddTask navigation={navigation}/> : <Text style={styles.textStyle}>Тут вы можете взять
+                новую задачу в работу</Text>}
             </ScrollView>
         );
     }
@@ -45,11 +47,16 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: "column",
     },
+    textStyle: {
+        color: '#808080',
+        fontSize: 24,
+        textAlign: 'center'
+    }
 });
 
 function mapStateToProps(state) {
-    const { backlog } = state;
-    return { backlog };
+    const { backlog, isAdmin } = state;
+    return { backlog, isAdmin };
 }
 
 export default connect(mapStateToProps, {getBacklog})(BacklogTasksList);

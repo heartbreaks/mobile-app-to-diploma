@@ -11,7 +11,7 @@ function FinishedTasks(props) {
       }}
     >
       <View style={styles.card}>
-        <Text style={{ padding: 15, color: "white", position: 'absolute', top: '30%' }}>
+        <Text style={{textAlign: 'center', padding: 15, color: "white", position: 'absolute', top: '30%' }}>
           Завершенные задачи
         </Text>
       </View>
@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.32,
     shadowRadius: 5.46,
     elevation: 9,
+    borderRadius: 30,
   },
 });
 

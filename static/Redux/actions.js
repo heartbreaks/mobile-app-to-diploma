@@ -1,5 +1,12 @@
 import axios from "axios";
-import { AUTH_USER, GET_EMPLOYERS, ADD_NEW_TASK, GET_BACKLOG_TASKS, UPDATE_BACKLOG_LIST } from "./types";
+import {
+  AUTH_USER,
+  GET_EMPLOYERS,
+  ADD_NEW_TASK,
+  GET_BACKLOG_TASKS,
+  UPDATE_BACKLOG_LIST,
+  CREATE_NEW_TASK_TO_BACKLOG
+} from "./types";
 import {Alert} from "react-native";
 
 const url = `http://192.168.1.6:500`
@@ -158,5 +165,43 @@ export const getTaskBacklog = (taskId, userId) => {
 
     }
 
+  }
+}
+
+
+export const createTaskBacklog = (data) => {
+  return async dispatch => {
+    try {
+      const res = await axios.post(`${url}/backlog/add?title=${data.title}&body=${data.body}&date=${data.date}&level_primary=${data.levelPrimary}&appointment_by=${data.appointment_by}`)
+      dispatch({
+        type: CREATE_NEW_TASK_TO_BACKLOG,
+        response: res.data.taskBacklog
+      })
+      return Alert.alert(
+          "Успешно",
+          "Задача была добавлена в бэклог. Теперь ее все видят",
+          [
+            {
+              text: "Ok",
+              onPress: () => {
+                console.log("Создана задача в бэклоге");
+              },
+            },
+          ]
+      )
+    }catch (e) {
+      return Alert.alert(
+          "Ошибка",
+          "Во время запроса произошла ошибка, попробуйте снова позже",
+          [
+            {
+              text: "Ok",
+              onPress: () => {
+                console.log(e.message);
+              },
+            },
+          ]
+      )
+    }
   }
 }
