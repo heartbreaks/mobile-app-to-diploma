@@ -94,7 +94,7 @@ export const endTask = (id, end) => {
   return async dispatch => {
     try {
       const res = await axios.put( `${url}/tasks/end-task?id=${id}&ended=${end}`)
-      return Alert.alert(
+      Alert.alert(
           `Успешно`,
           "Поздравляю! Вы завершили задачу, обновите страницу что бы актуализировать задачи.",
           [
@@ -103,6 +103,11 @@ export const endTask = (id, end) => {
             },
           ]
       );
+
+      dispatch({
+        type: 'CLOSE_TASK',
+        response: {id, status: 'success'}
+      })
 
     }catch (err) {}
   }

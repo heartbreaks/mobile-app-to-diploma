@@ -23,36 +23,17 @@ function Task(props) {
     const appointmentBy = currentTask.appointment_by.length > 13 ? currentTask.appointment_by.slice(0, 11) + '…' : currentTask.appointment_by
 
     return (
-        <TouchableOpacity
-            onPress={() => {
-                navigation.navigate("BacklogCurrentTask", currentTask);
-            }}
-        >
+        <TouchableOpacity onPress={() => navigation.navigate("BacklogCurrentTask", currentTask)}>
             <View style={styles.task}>
                 <View style={styles.head}>
                     <Text
-                        style={
-                            (
-                                {
-                                    fontSize: 15,
-                                    fontWeight: "bold",
-                                    paddingBottom: 3,
-                                    borderBottomColor: "white",
-                                    borderBottomWidth: 1.5,
-                                    color: "#000",
-                                })
-                        }
-                    >
+                        style={({fontSize: 15,fontWeight: "bold",paddingBottom: 3,borderBottomColor: "white",borderBottomWidth: 1.5,color: "#000", }) }>
                         {currentTask.title}
                     </Text>
                 </View>
                 <View>
                     <Text
-                        style={{
-                            color: "#000",
-                            padding: 5,
-                        }}
-                    >
+                        style={{color: "#000", padding: 5,}}>
                         {currentTask.body}
                     </Text>
                 </View>
@@ -66,7 +47,6 @@ function Task(props) {
                         <Text style={{fontWeight: "bold"}}>{appointmentBy}</Text>
                     </View>
                 </View>
-
             </View>
         </TouchableOpacity>
     );

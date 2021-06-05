@@ -1,4 +1,4 @@
-import { AUTH_USER, GET_TICKETS, GET_EMPLOYERS, GET_BACKLOG_TASKS, UPDATE_BACKLOG_LIST } from "./types";
+import { AUTH_USER, GET_TICKETS, GET_EMPLOYERS, GET_BACKLOG_TASKS, CLOSE_TASK,  UPDATE_BACKLOG_LIST } from "./types";
 
 const initialState = {
   token: null,
@@ -19,6 +19,9 @@ export default function rootReducer(state = initialState, action) {
         return task
       })
       return { ...state, tasks: action.response.data.tasks};
+    case CLOSE_TASK:
+      const newTaskList = state.tasks.filter(task => task.id != action.response.id)
+      return {...state, tasks: newTaskList}
     case GET_EMPLOYERS:
       const userInfo = action.response.data.candidate.map((empl) => {
         let {id, name} = empl
