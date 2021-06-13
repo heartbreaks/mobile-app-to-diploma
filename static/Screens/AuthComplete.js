@@ -10,7 +10,7 @@ function AuthComplete(props) {
     <View style={styles.authCompleted}>
       <TouchableOpacity onPress={() => props.navigation.navigate("AddNewTaskScreen")}>
         <View style={styles.card}>
-          <Text style={{ padding: 15, color: "white", position: 'absolute', top: '30%' }}>Создать задачу</Text>
+          <Text style={{ textAlign: 'center',padding: 15, color: "white", position: 'absolute', top: '30%' }}>Создать задачу</Text>
         </View>
       </TouchableOpacity>
       {props.userRole === 2 ? (
@@ -19,9 +19,12 @@ function AuthComplete(props) {
         console.log(123)
       )}
       <FinishedTasks navigation={props.navigation} />
-      <TouchableOpacity onPress={() => props.navigation.navigate("BacklogScreen")}>
+      <TouchableOpacity onPress={() => {
+        console.log(props.navigation.navigate(''))
+        props.navigation.navigate("BacklogScreen")
+      }}>
         <View style={styles.card}>
-          <Text style={{ padding: 15, color: "white", position: 'absolute', top: '30%' }}>Беклог</Text>
+          <Text style={{ textAlign: 'center', padding: 15, color: "white", position: 'absolute', top: '30%' }}>Беклог</Text>
         </View>
       </TouchableOpacity>
     </View>
@@ -50,6 +53,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.32,
     shadowRadius: 5.46,
     elevation: 9,
+    borderRadius: 30,
   },
 });
 

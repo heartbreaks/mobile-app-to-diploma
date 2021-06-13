@@ -17,7 +17,6 @@ class StrokeOfDeadline extends React.Component {
         const today = new Date()
 
         const percent =  Math.round(100 - (((end - start) * 100000) / today))
-        console.log(start, end, today, percent)
         this.setState({percent: percent < 0 ? 0 : percent})
     }
 

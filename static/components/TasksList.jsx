@@ -14,7 +14,6 @@ class TasksList extends React.Component {
     const onInitScreen = () => {
       this.props.getTasks(this.props.userId);
     };
-    console.log(this.props.tasks, this.props.tasks)
     onInitScreen();
     setTimeout(onInitScreen, 300000);
   }

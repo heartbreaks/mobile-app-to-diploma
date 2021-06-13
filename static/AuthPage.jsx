@@ -12,6 +12,7 @@ import { MaterialCommunityIcons as Icon } from "@expo/vector-icons";
 import { toLogin } from "./Redux/actions";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import {ActivityIndicator, Alert} from "react-native";
 
 class Authentication extends React.Component {
   constructor(props) {
@@ -22,6 +23,7 @@ class Authentication extends React.Component {
       iconEye: "eye",
       login: "",
       password: "",
+      fetching: false,
       userInfo: {
         userToken: "",
         userId: "",
@@ -40,9 +42,7 @@ class Authentication extends React.Component {
 
   render() {
     const { login, password } = this.state;
-
     const isCorrect = login && password != "" ? false : true;
-
     return (
       <View style={styles.container}>
         <View>
@@ -78,9 +78,14 @@ class Authentication extends React.Component {
               size={20}
             />
           </View>
+          <ActivityIndicator animating={this.state.fetching} style={styles.loader} size='large'/>
           <Button
             {...{ disabled: isCorrect }}
-            onPress={() => this.props.toLogin(login, password)}
+            onPress={async () => {
+              this.setState({fetching: true})
+              await this.props.toLogin(login, password)
+              this.setState({fetching: false})
+            }}
             style={{ marginTop: "20px", width: "5%" }}
             title="Войти"
           />
@@ -120,4 +125,9 @@ function mapDispatchToProps(dispatch) {
     dispatch
   );
 }
-export default connect(null, mapDispatchToProps)(Authentication);
+
+function mapStateToProps(state) {
+  const {fetching} = state
+  return {fetching}
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Authentication);

@@ -7,7 +7,7 @@
     "start": "node index.js",
     "server": "nodemon index.js",
     "client": "npm run start --prefix static",
-    "develop": "concurrently  \"npm run server\" \"npm run start\" "
+    "develop": "concurrently  \"npm run server\" \"npm run client\" "
   },
   "author": "Sergey Khokhlov <sergeykhokhlov12345678@gmail.com>",
   "license": "ISC",

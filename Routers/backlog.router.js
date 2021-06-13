@@ -35,7 +35,7 @@ router.post('/get-task', async (req, res) => {
         }
         const newTask = await Backlog.findOne({where: {id: taskID}})
         if (!newTask) {
-            return res.status(404).json({msg: 'Такой задачи уже нет'})
+            return res.status(403).json({msg: 'Такой задачи уже нет'})
         }
 
         const taskToExecutor = Object.assign({},
@@ -46,7 +46,7 @@ router.post('/get-task', async (req, res) => {
         await Task.save()
 
         await Backlog.destroy({where: {id:taskID}})
-        res.status(201).json({msg: 'Задача добавлена'})
+        res.status(201).json({msg: 'Задача добавлена', res: Task})
     } catch (err) {
         return res.status(500).json({msg: 'Капитан, у нас проблема'})
 
