@@ -9,7 +9,7 @@ import {
 } from "./types";
 import {Alert} from "react-native";
 
-const url = `http://192.168.1.6:500`
+const url = `https://pipine.herokuapp.com`
 
 export const toLogin = (login, password) => {
   return async dispatch => {
