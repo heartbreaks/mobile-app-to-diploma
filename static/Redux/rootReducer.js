@@ -5,7 +5,7 @@ import {
   GET_BACKLOG_TASKS,
   CLOSE_TASK,
   UPDATE_BACKLOG_LIST,
-  CREATE_NEW_TASK_TO_BACKLOG
+  CREATE_NEW_TASK_TO_BACKLOG, LOGOUT
 } from "./types";
 
 const initialState = {
@@ -60,6 +60,8 @@ export default function rootReducer(state = initialState, action) {
       action.response.level_primary = Number(action.response.level_primary)
       const updatedBacklog = state.backlog.concat(makeNameUser([action.response], state))
       return {...state, backlog: updatedBacklog}
+    case LOGOUT:
+      return {...state, token: null}
     default:
       return state;
   }

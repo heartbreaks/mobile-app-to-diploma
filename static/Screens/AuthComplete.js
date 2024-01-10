@@ -1,9 +1,10 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import {View, Text, StyleSheet, Button} from "react-native";
 import { connect } from "react-redux";
 import AddNewEmployer from "../components/AddNewEmployer";
 import FinishedTasks from "../components/FinishedTasks";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import {logout} from "../Redux/actions";
 
 function AuthComplete(props) {
   return (
@@ -19,15 +20,20 @@ function AuthComplete(props) {
         console.log(123)
       )}
       <FinishedTasks navigation={props.navigation} />
-      <TouchableOpacity onPress={() => {
-        console.log(props.navigation.navigate(''))
-        props.navigation.navigate("BacklogScreen")
-      }}>
-        <View style={styles.card}>
-          <Text style={{ textAlign: 'center', padding: 15, color: "white", position: 'absolute', top: '30%' }}>Беклог</Text>
-        </View>
-      </TouchableOpacity>
+      {/*<TouchableOpacity onPress={() => {*/}
+      {/*  console.log(props.navigation.navigate(''))*/}
+      {/*  props.navigation.navigate("BacklogScreen")*/}
+      {/*}}>*/}
+      {/*  <View style={styles.card}>*/}
+      {/*    <Text style={{ textAlign: 'center', padding: 15, color: "white", position: 'absolute', top: '30%' }}>Беклог</Text>*/}
+      {/*  </View>*/}
+      {/*</TouchableOpacity>*/}
+
+      <View style={{ position: "absolute", top: "-40%", right: '1%' }}>
+        <Button onPress={ props.logout } title="Выйти" />
+      </View>
     </View>
+
   );
 }
 
@@ -62,4 +68,4 @@ function mapStateToProps(state) {
   return { userRole };
 }
 
-export default connect(mapStateToProps)(AuthComplete);
+export default connect(mapStateToProps, { logout })(AuthComplete);

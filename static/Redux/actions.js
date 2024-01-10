@@ -5,7 +5,7 @@ import {
   ADD_NEW_TASK,
   GET_BACKLOG_TASKS,
   UPDATE_BACKLOG_LIST,
-  CREATE_NEW_TASK_TO_BACKLOG
+  CREATE_NEW_TASK_TO_BACKLOG, LOGOUT
 } from "./types";
 import {Alert} from "react-native";
 
@@ -132,6 +132,12 @@ export const getBacklog = () => {
     }catch (err) {
 
     }
+  }
+}
+
+export const logout = () => {
+  return dispatch => {
+    dispatch({type: LOGOUT})
   }
 }
 

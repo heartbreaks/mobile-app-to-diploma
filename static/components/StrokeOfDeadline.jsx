@@ -23,11 +23,10 @@ class StrokeOfDeadline extends React.Component {
     render() {
         return (
             <View>
-                <Text style={styles.headStroke}>Дедлайн</Text>
-                <Text style={styles.headStroke}>{this.state.percent}%</Text>
-                <Text>{new Date(this.props.dates.date).toLocaleDateString('ru-Ru', {month: 'long', day: 'numeric', year: 'numeric'})}</Text>
-                <View style={styles.borderStroke}>
-                    <View style={{height: 9, width: `${this.state.percent}%`, backgroundColor: '#2D9BF0'}}></View>
+                <Text style={styles.headStroke}>Дедлайн: {new Date(this.props.dates.date).toLocaleDateString('ru-Ru', {month: 'long', day: 'numeric', year: 'numeric'})}</Text>
+                <View>
+                    <View style={{height: 2, width: `${this.state.percent}%`, backgroundColor: '#2D9BF0'}}></View>
+                    <Text style={{...styles.headStroke, textAlign: 'right'}}>{this.state.percent}%</Text>
                 </View>
             </View>
         )
@@ -40,14 +39,15 @@ const styles = StyleSheet.create({
     },
     headStroke: {
         fontSize: 16,
-        fontWeight: '300'
+        fontWeight: '300',
+        marginBottom: '2%',
     },
     borderStroke: {
         borderWidth: 1,
         borderColor: '#ECECEC'
     },
     lineStroke: {
-        height: 9,
+        height: 3,
         width: `100%`,
         backgroundColor: '#2D9BF0'
     }
