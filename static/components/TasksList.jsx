@@ -24,7 +24,7 @@ class TasksList extends React.Component {
       <ScrollView style={styles.tasksList}>
         {tasks == null || tasks.length == 0 ? <Text>У вас нет задач</Text> : tasks ? (
           tasks.map(task => {
-            return <Task style={{width: '90%'}} key={task.id} navigation={navigation} id={task.id} />;
+            return <Task key={task.id} navigation={navigation} id={task.id} />;
           })
         ) : (<Text>Load</Text>)}
       </ScrollView>
@@ -35,6 +35,8 @@ class TasksList extends React.Component {
 const styles = StyleSheet.create({
   tasksList: {
     flex: 1,
+    maxWidth: '99%',
+    minWidth: '99%',
     flexDirection: "column",
   },
 });
