@@ -9,7 +9,7 @@ import {
 } from "./types";
 import {Alert} from "react-native";
 
-const url = `http://192.168.1.6:500` // Изменить на адрес в сети!!!
+const url = `http://192.168.1.100:500` // Изменить на адрес в сети!!!
 
 export const toLogin = (login, password) => {
   return async dispatch => {
