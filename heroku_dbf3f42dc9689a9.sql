@@ -79,8 +79,8 @@ CREATE TABLE `tasks` (
   `level_primary` int(11) NOT NULL,
   `appointment_by` int(11) DEFAULT NULL,
   `ended` tinyint(4) NOT NULL DEFAULT 0,
-  `createdAt` date NOT NULL DEFAULT current_timestamp(),
-  `updatedAt` date NOT NULL DEFAULT current_timestamp()
+  `createdAt` TIMESTAMP NOT NULL DEFAULT current_timestamp(),
+  `updatedAt` TIMESTAMP NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
