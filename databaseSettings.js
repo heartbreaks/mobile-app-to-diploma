@@ -1,9 +1,9 @@
 const Sequelize = require('sequelize')
 
 
-module.exports = new Sequelize('railway', 'root', 'c66-EgFDf62bh5gGFhEha6EaGfHcEgCF', {
+module.exports = new Sequelize('railway', 'root', 'HEABD2G2Ed3d24dDCb-D1cgGD434Bb3e', {
     host: 'viaduct.proxy.rlwy.net',
-    port: 57049,
+    port: 38718,
     dialect: 'mysql',
     pool: {
         max: 5,
